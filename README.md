@@ -1,2 +1,2 @@
-# Leaflet_Earthquake_Visualization
-Visualizing Data with Leaflet
+## App deployed to Heroku at:
+https://leaflet-earthquake.herokuapp.com/
