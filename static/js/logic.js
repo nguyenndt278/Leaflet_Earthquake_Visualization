@@ -26,22 +26,22 @@ function size(mag) {
 
   function circleColor(mag) {
     if (mag < 1) {
-      return "#FFA07A"
+      return "#ffe6e6"
     }
     else if (mag < 2) {
-      return "#E9967A"
+      return "#ffb3b3"
     }
     else if (mag < 3) {
-      return "#CD5C5C"
+      return "#ff6666"
     }
     else if (mag < 4) {
-      return "#DC143C"
+      return "#ff1a1a"
     }
     else if (mag < 5) {
-        return "#FF0000"
+        return "#cc0000"
       }
     else {
-      return "#8B0000"
+      return "#800000"
     }
   };
 
@@ -107,14 +107,26 @@ var myMap = L.map("map", {
 
 // Creating a legend
 
-function getColor(d) {
-    return d> 5 ? '#CD5C5C':
-            d > 4 ? '#DC143C':
-            d > 3 ? '#B22222':
-            d > 2 ? '#FF0000':
-            d > 1 ? '#8B0000':
-            '#FFD700';
+function legendColor(d) {
+  if (d < 1) {
+    return "#ffe6e6"
   }
+  else if (d < 2) {
+    return "#ffb3b3"
+  }
+  else if (d < 3) {
+    return "#ff6666"
+  }
+  else if (d < 4) {
+    return "#ff1a1a"
+  }
+  else if (d < 5) {
+      return "#cc0000"
+    }
+  else {
+    return "#800000"
+  }
+};
 
 var info = L.control({ position: "bottomright" });
 
@@ -128,8 +140,12 @@ info.onAdd = function (myMap) {
 
     for (var i = 0; i < magnitude.length; i++) {
       div.innerHTML +=
-        '<i style= "background-color:' + getColor(magnitude[i] + 1) + '"></i> ' +
-        magnitude[i] + (magnitude[i + 1] ? '&ndash;' + magnitude[i + 1] + '<br>' : '+');
+        magnitude[i]  + (magnitude[i + 1] ? '&ndash;'+  magnitude[i + 1] + ''
+        +'<i style= "background-color:' + legendColor(magnitude[i] + 1) + '; color: transparent;'  + '">'
+        + 'jonathan'+'</i>'
+        +'<br>' : '+'
+        +'<i style= "background-color:' + legendColor(magnitude[i] + 1) + ';color: transparent;'  + '">'
+        + 'jonathan'+'</i>');
     }
     return div;
   };
